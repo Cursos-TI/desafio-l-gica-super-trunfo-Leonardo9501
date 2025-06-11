@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+// Estrutura da carta
+typedef struct {
+    char estado[50];
+    char codigo[20];
+    char nome_cidade[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+} Carta;
+
+// Funções para calcular Densidade Populacional e PIB per capita
+float calcularDensidadePopulacional(Carta c) {
+    return c.populacao / c.area;
+}
+
+float calcularPIBperCapita(Carta c) {
+    return c.pib / c.populacao;
+}
+
+// Função para comparar um atributo escolhido e determinar vencedor
+void compararCartas(Carta carta1, Carta carta2) {
+    // Escolha do atributo (exemplo: comparação por PIB)
+    float atributo1 = carta1.pib;
+    float atributo2 = carta2.pib;
+
+    printf("Comparação de cartas (Atributo: PIB)\n");
+    printf("Carta 1 - %s (%s): %.2f\n", carta1.nome_cidade, carta1.estado, atributo1);
+    printf("Carta 2 - %s (%s): %.2f\n", carta2.nome_cidade, carta2.estado, atributo2);
+
+    if (atributo1 > atributo2) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", carta1.nome_cidade);
+    } else if (atributo1 < atributo2) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", carta2.nome_cidade);
+    } else {
+        printf("Resultado: Empate!\n");
+    }
+}
+
+int main() {
+    // Definição das cartas (dados fictícios)
+    Carta carta1 = {"SP", "001", "São Paulo", 12300000, 1521.11, 760000000000, 25};
+    Carta carta2 = {"RJ", "002", "Rio de Janeiro", 6000000, 1200.00, 380000000000, 18};
+
+    // Chamar função de comparação
+    compararCartas(carta1, carta2);
+
+    return 0;
+}
